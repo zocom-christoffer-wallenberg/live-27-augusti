@@ -1,0 +1,28 @@
+service: serverless-example
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  deploymentMethod: direct
+  region: eu-north-1
+
+functions:
+  GetTodo:
+    handler: functions/GetTodo/index.handler
+    events:
+      - httpApi:
+          path: /todos
+          method: get
+  PostTodo:
+    handler: functions/PostTodo/index.handler
+    events:
+      - httpApi:
+          path: /todos
+          method: post
+  UpdateTodo:
+    handler: functions/UpdateTodo/index.handler
+    events:
+      - httpApi:
+          path: /todos/{id}
+          method: put
